@@ -82,14 +82,18 @@ The web app is now ready to be deployed!
 ### Back-end
 
 - [Node.js](https://nodejs.org/en/) running a [Fastify](https://www.fastify.io/) web server
-- Fastify or Socket.io to serve the websocket connections
-- [Heroku](https://www.heroku.com/) to host the back-end server
+- Fastify or Socket.io to se🚀ve the websocket connections
+- [Heroku](https://www.herok🚀.com/) to host the back-end server
 
 ### Tooling
 
 - [Git](https://git-scm.com/) version control
 <!-- - [Cypress](https://www.cypress.io/) for unit testing and end-to-end testing -->
 
-## Credit
+## The Team 🚀
 
-Built with ❤ by [A.C.](https://github.com/AdrianaCucu)
+Built with ❤ by [A.C.](https://github.com/AdrianaCucu) and [DMeechan](https://github.com/DMeechan)
+
+## License
+
+This project is [MIT licensed](https://github.com/AdrianaCucu/hex-web-app/blob/master/LICENSE).
