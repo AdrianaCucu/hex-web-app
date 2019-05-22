@@ -1,25 +1,63 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Box, Grommet } from 'grommet';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+
+// If we do this...
+
+// import lib from 'grommet';
+
+// Then these are the same:
+
+// const Grommet = lib.Grommet;
+// const { Grommet } = lib;
+
+const theme = {
+  global: {
+    colors: {
+      brand: '#01FF70',
+    },
+    font: {
+      family: 'Roboto',
+      size: '14px',
+      height: '20px'
+    }
+  }
+};
+
+const AppBar = (props) => (
+  <Box
+    tag='header'
+    direction='row'
+    align='center'
+    justify='between'
+    background='brand'
+    pad={{ left: 'medium', right: 'small', vertical: 'small' }}
+    elevation='medium'
+    style={{ zIndex: '1' }}
+    {...props}
+  />
+);
+
+function Home() {
+  return <p>Hellooooooooo</p>
+}
+
+function Game() {
+  return <p>Byeeeeeeeeeee</p>
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Grommet theme={theme}>
+      <Router>
+        <AppBar>
+          <Link to='/'>Home</Link>
+          <Link to='/game'>Game</Link>
+        </AppBar>
+          <Route path='/' exact component={Home} />
+          <Route path='/game' component={Game} />
+      </Router>
+    </Grommet>
   );
 }
 
