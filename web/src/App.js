@@ -2,6 +2,10 @@ import React from 'react';
 import { Box, Grommet } from 'grommet';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
+import Home from './pages/Home';
+import Game from './pages/Game';
+
+
 // If we do this...
 
 // import lib from 'grommet';
@@ -37,14 +41,6 @@ const AppBar = (props) => (
     {...props}
   />
 );
-
-function Home() {
-  return <p>Hellooooooooo</p>
-}
-
-function Game() {
-  return <p>Byeeeeeeeeeee</p>
-}
 
 function App() {
   return (
