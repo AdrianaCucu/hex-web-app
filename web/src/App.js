@@ -18,7 +18,7 @@ import Game from './pages/Game';
 const theme = {
   global: {
     colors: {
-      brand: '#01FF70',
+      brand: '#FDA7DF',
     },
     font: {
       family: 'Roboto',
@@ -28,7 +28,7 @@ const theme = {
   }
 };
 
-const AppBar = (props) => (
+const NavBar = (props) => (
   <Box
     tag='header'
     direction='row'
@@ -42,16 +42,25 @@ const AppBar = (props) => (
   />
 );
 
+const Body = (props) => (
+  <Box direction='row' flex overflow={{horizontal: 'hidden'}}>
+    <Box flex align='center' justify='center'>
+      {/* This is the app's main body, where the Home and Game components are injected */}
+      <Route path='/' exact component={Home} />
+      <Route path='/game' component={Game} />
+    </Box>
+  </Box>
+)
+
 function App() {
   return (
-    <Grommet theme={theme}>
+    <Grommet theme={theme} full>
       <Router>
-        <AppBar>
+        <NavBar>
           <Link to='/'>Home</Link>
           <Link to='/game'>Game</Link>
-        </AppBar>
-          <Route path='/' exact component={Home} />
-          <Route path='/game' component={Game} />
+        </NavBar>
+        <Body />
       </Router>
     </Grommet>
   );
