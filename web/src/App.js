@@ -28,6 +28,21 @@ const ToggleThemeButton = ({ toggleTheme, selectedTheme }) => (
   </Box>
 );
 
+//  <Box
+//    fill='vertical'
+//    direction='column'
+//    flex overflow={{ horizontal: 'hidden' }}
+//    justify='center'
+//    border={{ color: 'brand', size: 'xlarge' }}
+//    pad='medium'
+//  >
+//    {/* This is the app's main body, where the Home and Game components are injected */}
+//    <Box>
+//      <Route align='center' path='/' exact component={Home} />
+//      <Route align='center' path='/help' component={Help} />
+//      <Route align='left' fill='vertical' path='/game' component={Game} />
+//    </Box>
+
 const Body = props => (
   <Box flex justify="center">
     {/* This is the app's main body, where the Home and Game components are injected */}

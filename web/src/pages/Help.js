@@ -1,20 +1,24 @@
 import React from 'react';
 import { Box, Button } from 'grommet';
 import { Link } from 'react-router-dom';
-import { Gamepad } from 'grommet-icons';
 
 export default class Help extends React.Component {
     render() {
         return (
-            <React.Fragment>
+            <Box
+                direction='column'
+                pad='small'
+                align='center'
+                margin='small'
+            >
                 Helloooooo :)
                 <Link to='/'>
                     <Button
                         label='Back'
-                        margin='xlarge'
+                        margin='small'
                     />
                 </Link>
-            </React.Fragment>
+            </Box>
         )
     };
 }
