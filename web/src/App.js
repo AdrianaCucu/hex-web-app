@@ -29,27 +29,20 @@ const theme = {
   }
 };
 
-const NavBar = (props) => (
-  <Box
-    tag='header'
-    direction='row'
-    align='center'
-    justify='between'
-    background='brand'
-    pad={{ left: 'medium', right: 'small', vertical: 'small' }}
-    elevation='medium'
-    style={{ zIndex: '1' }}
-    {...props}
-  />
-);
-
 const Body = (props) => (
-  <Box direction='row' flex overflow={{horizontal: 'hidden'}}>
-    <Box flex align='center' justify='center'>
-      {/* This is the app's main body, where the Home and Game components are injected */}
-      <Route path='/' exact component={Home} />
-      <Route path='/game' component={Game} />
-      <Route path='/help' component={Help} />
+  <Box
+    fill='vertical'
+    direction='column'
+    flex overflow={{ horizontal: 'hidden' }}
+    justify='center'
+    border={{ color: 'brand', size: 'xlarge' }}
+    pad='medium'
+  >
+    {/* This is the app's main body, where the Home and Game components are injected */}
+    <Box>
+      <Route align='center' path='/' exact component={Home} />
+      <Route align='center' path='/help' component={Help} />
+      <Route align='left' fill='vertical' path='/game' component={Game} />
     </Box>
   </Box>
 )

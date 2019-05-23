@@ -8,7 +8,11 @@ export default class Home extends React.Component {
         const icon = <Gamepad />;
 
         return (
-            <React.Fragment>
+            <Box
+                direction='column'
+                pad='small'
+                align='center'
+            >
                 <Link to='/game'>
                     <Button
                         icon={icon}
@@ -23,7 +27,7 @@ export default class Home extends React.Component {
                         margin='xsmall'
                     />
                 </Link>
-            </React.Fragment>
+            </Box>
         );
     };
 }
