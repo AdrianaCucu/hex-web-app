@@ -2,46 +2,16 @@ import React from 'react';
 import { Box, Grommet } from 'grommet';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
+import { dark, light } from './helpers/themes';
 import Home from './pages/Home';
 import Game from './pages/Game';
 import Help from './pages/Help';
 
-
-// If we do this...
-
-// import lib from 'grommet';
-
-// Then these are the same:
-
-// const Grommet = lib.Grommet;
-// const { Grommet } = lib;
-
-const theme = {
-  global: {
-    colors: {
-      brand: '#FDA7DF',
-    },
-    font: {
-      family: 'Roboto',
-      size: '14px',
-      height: '20px'
-    }
-  }
-};
-
-const NavBar = (props) => (
-  <Box
-    tag='header'
-    direction='row'
-    align='center'
-    justify='between'
-    background='brand'
-    pad={{ left: 'medium', right: 'small', vertical: 'small' }}
-    elevation='medium'
-    style={{ zIndex: '1' }}
-    {...props}
-  />
-);
+/*
+  These do the same thing:
+  const Box = grommet.Box;
+  const { Box } = grommet;
+*/
 
 const Body = (props) => (
   <Box direction='row' flex overflow={{horizontal: 'hidden'}}>
@@ -56,7 +26,7 @@ const Body = (props) => (
 
 function App() {
   return (
-    <Grommet theme={theme} full>
+    <Grommet theme={dark} full>
       <Router>
         <Body />
       </Router>
