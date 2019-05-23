@@ -15,28 +15,31 @@ import { Moon, Sun } from './components/icons';
   const { Box } = grommet;
 */
 
-const Body = props => (
-  <Box direction="row" flex overflow={{ horizontal: 'hidden' }}>
-    <Box flex align="center" justify="center">
-      {/* This is the app's main body, where the Home and Game components are injected */}
-      <Route path="/" exact component={Home} />
-      <Route path="/game" component={Game} />
-      <Route path="/help" component={Help} />
-    </Box>
-  </Box>
-);
-
 const themes = {
   dark: dark,
   light: light,
 };
 
-const ToggleThemeButton = props =>
-  props.theme === 'light' ? <Moon /> : <Sun />;
+const ToggleThemeButton = ({ toggleTheme, selectedTheme }) => (
+  <Box>
+    <Button onClick={toggleTheme.bind(this)} margin="medium">
+      {selectedTheme === 'light' ? <Moon /> : <Sun />}
+    </Button>
+  </Box>
+);
+
+const Body = props => (
+  <Box flex justify="center">
+    {/* This is the app's main body, where the Home and Game components are injected */}
+    <Route path="/" exact component={Home} />
+    <Route path="/game" component={Game} />
+    <Route path="/help" component={Help} />
+  </Box>
+);
 
 class App extends Component {
   state = {
-    selectedTheme: 'light',
+    selectedTheme: 'dark',
   };
 
   toggleTheme() {
@@ -52,10 +55,13 @@ class App extends Component {
     return (
       <Grommet theme={theme} full>
         <Router>
-          <Button onClick={this.toggleTheme.bind(this)} margin='medium'>
-            <ToggleThemeButton theme={selectedTheme} />
-          </Button>
-          <Body />
+          <Box direction="row" flex overflow={{ horizontal: 'hidden' }} fill>
+            <ToggleThemeButton
+              toggleTheme={this.toggleTheme.bind(this)}
+              selectedTheme={selectedTheme}
+            />
+            <Body />
+          </Box>
         </Router>
       </Grommet>
     );
