@@ -7,6 +7,8 @@ import Home from './pages/Home';
 import Game from './pages/Game';
 import Help from './pages/Help';
 
+import { Moon, Sun } from './components/icons';
+
 /*
   These do the same thing:
   const Box = grommet.Box;
@@ -29,9 +31,12 @@ const themes = {
   light: light,
 };
 
+const ToggleThemeButton = props =>
+  props.theme === 'light' ? <Moon /> : <Sun />;
+
 class App extends Component {
   state = {
-    selectedTheme: 'dark',
+    selectedTheme: 'light',
   };
 
   toggleTheme() {
@@ -47,11 +52,9 @@ class App extends Component {
     return (
       <Grommet theme={theme} full>
         <Router>
-          <Button
-            label="toggle"
-            onClick={this.toggleTheme.bind(this)}
-            margin="small"
-          />
+          <Button onClick={this.toggleTheme.bind(this)} margin='medium'>
+            <ToggleThemeButton theme={selectedTheme} />
+          </Button>
           <Body />
         </Router>
       </Grommet>
