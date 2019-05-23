@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 import Home from './pages/Home';
 import Game from './pages/Game';
+import Help from './pages/Help';
 
 
 // If we do this...
@@ -48,6 +49,7 @@ const Body = (props) => (
       {/* This is the app's main body, where the Home and Game components are injected */}
       <Route path='/' exact component={Home} />
       <Route path='/game' component={Game} />
+      <Route path='/help' component={Help} />
     </Box>
   </Box>
 )
@@ -56,10 +58,6 @@ function App() {
   return (
     <Grommet theme={theme} full>
       <Router>
-        <NavBar>
-          <Link to='/'>Home</Link>
-          <Link to='/game'>Game</Link>
-        </NavBar>
         <Body />
       </Router>
     </Grommet>
