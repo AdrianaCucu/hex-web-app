@@ -5,7 +5,7 @@ import { deepMerge } from 'grommet/utils';
 // On this page: https://storybook.grommet.io/?path=/story/components--all
 
 const customShared = {
-  global: { // it doesn't seem to deep merge... so the global attributes aren't being applied
+  global: {
     font: {
       family: 'Roboto',
       size: '14px',
@@ -29,8 +29,7 @@ const darkBackground = '#1B1464'; // dark blue
     https://grommet-nextjs.herokuapp.com/theme
 */
 
-const customLight = {
-  ...customShared,
+let customLight = {
   global: {
     colors: {
       brand: lightBrand,
@@ -39,8 +38,7 @@ const customLight = {
   },
 };
 
-const customDark = {
-  ...customShared,
+let customDark = {
   global: {
     colors: {
       brand: darkBrand,
@@ -72,6 +70,9 @@ const customDark = {
     },
   },
 };
+
+customLight = deepMerge(customLight, customShared)
+customDark = deepMerge(customDark, customShared)
 
 console.log('customDark: ', customDark);
 
