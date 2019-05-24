@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Box, Grommet, Button } from 'grommet';
+import { Box, Grommet, Button, Anchor, Text } from 'grommet';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 import { dark, light } from './helpers/themes';
@@ -29,11 +29,25 @@ const ToggleThemeButton = ({ toggleTheme, selectedTheme }) => (
 );
 
 const Body = props => (
-  <Box flex justify="center" align='left'>
+  <Box flex justify="center" align="left" margin="medium">
     {/* This is the app's main body, where the Home and Game components are injected */}
     <Route path="/" exact component={Home} />
     <Route path="/game" component={Game} />
     <Route path="/help" component={Help} />
+  </Box>
+);
+
+const Footer = props => (
+  <Box justify="end" align="center" margin="small">
+    <Text size="small">
+      Made with ❤ by A.C. and DMeechan⠀·⠀
+      <Anchor
+        href="https://github.com/AdrianaCucu/hex-web-app/"
+        target="_blank"
+      >
+        GitHub
+      </Anchor>
+    </Text>
   </Box>
 );
 
@@ -59,7 +73,7 @@ class App extends Component {
             flex
             fill
             pad="small"
-            direction="row"
+            direction="column"
             overflow={{ horizontal: 'hidden' }}
             border={{ color: 'brand', size: 'xlarge' }}
           >
@@ -68,6 +82,7 @@ class App extends Component {
               selectedTheme={selectedTheme}
             />
             <Body />
+            <Footer />
           </Box>
         </Router>
       </Grommet>
