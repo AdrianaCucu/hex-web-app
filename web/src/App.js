@@ -29,7 +29,7 @@ const ToggleThemeButton = ({ toggleTheme, selectedTheme }) => (
 );
 
 const Body = props => (
-  <Box flex justify="center" align="left" margin="medium">
+  <Box flex justify="center" align="start" margin="medium">
     {/* This is the app's main body, where the Home and Game components are injected */}
     <Route path="/" exact component={Home} />
     <Route path="/game" component={Game} />
@@ -38,7 +38,7 @@ const Body = props => (
 );
 
 const Footer = props => (
-  <Box justify="end" align="center" margin="small">
+  <Box justify="end" align="center">
     <Text size="small">
       Made with ❤ by A.C. and DMeechan⠀·⠀
       <Anchor
@@ -72,7 +72,6 @@ class App extends Component {
           <Box
             flex
             fill
-            pad="small"
             direction="column"
             overflow={{ horizontal: 'hidden' }}
             border={{ color: 'brand', size: 'xlarge' }}
