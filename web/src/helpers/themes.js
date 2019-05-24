@@ -1,8 +1,11 @@
 import { dark as defaultDark, grommet as defaultLight } from 'grommet/themes';
 import { deepMerge } from 'grommet/utils';
 
+// After searching and searching and searching... I eventually found the grommet/utils/deepMerge tool
+// On this page: https://storybook.grommet.io/?path=/story/components--all
+
 const customShared = {
-  global: {
+  global: { // it doesn't seem to deep merge... so the global attributes aren't being applied
     font: {
       family: 'Roboto',
       size: '14px',
@@ -29,10 +32,10 @@ const darkBackground = '#1B1464'; // dark blue
 const customLight = {
   ...customShared,
   global: {
-      colors: {
-          brand: lightBrand,
-          background: lightBackground
-      }
+    colors: {
+      brand: lightBrand,
+      background: lightBackground,
+    },
   },
 };
 
