@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button } from 'grommet';
+import { Box, Button, Heading } from 'grommet';
 import { Link } from 'react-router-dom';
 import { Gamepad } from 'grommet-icons';
 
@@ -8,20 +8,24 @@ export default class Home extends React.Component {
     const icon = <Gamepad />;
 
     return (
-      <Box direction="column" pad="small" align="center">
+      <React.Fragment>
+        <Heading margin="small">
+          Hex
+        </Heading>
+
         <Link to="/game">
           <Button
             primary
             icon={icon}
             label="Start Game"
-            margin="medium"
+            margin="small"
             reverse
           />
         </Link>
         <Link to="/help">
-          <Button label="Help" margin="xsmall" />
+          <Button label="Help" margin="small" />
         </Link>
-      </Box>
+      </React.Fragment>
     );
   }
 }

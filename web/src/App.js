@@ -28,23 +28,8 @@ const ToggleThemeButton = ({ toggleTheme, selectedTheme }) => (
   </Box>
 );
 
-//  <Box
-//    fill='vertical'
-//    direction='column'
-//    flex overflow={{ horizontal: 'hidden' }}
-//    justify='center'
-//    border={{ color: 'brand', size: 'xlarge' }}
-//    pad='medium'
-//  >
-//    {/* This is the app's main body, where the Home and Game components are injected */}
-//    <Box>
-//      <Route align='center' path='/' exact component={Home} />
-//      <Route align='center' path='/help' component={Help} />
-//      <Route align='left' fill='vertical' path='/game' component={Game} />
-//    </Box>
-
 const Body = props => (
-  <Box flex justify="center">
+  <Box flex justify="center" align='left'>
     {/* This is the app's main body, where the Home and Game components are injected */}
     <Route path="/" exact component={Home} />
     <Route path="/game" component={Game} />
@@ -70,7 +55,14 @@ class App extends Component {
     return (
       <Grommet theme={theme} full>
         <Router>
-          <Box direction="row" flex overflow={{ horizontal: 'hidden' }} fill>
+          <Box
+            flex
+            fill
+            pad="small"
+            direction="row"
+            overflow={{ horizontal: 'hidden' }}
+            border={{ color: 'brand', size: 'xlarge' }}
+          >
             <ToggleThemeButton
               toggleTheme={this.toggleTheme.bind(this)}
               selectedTheme={selectedTheme}
