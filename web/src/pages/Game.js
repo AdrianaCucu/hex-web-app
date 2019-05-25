@@ -21,8 +21,9 @@ export default class Game extends React.Component {
     }
 
     handleClick(i, j) {
-
-        const historyRows = this.state.history.slice(0, this.state.stepNumber + 1);
+        const { history } = this.state;
+        
+        const historyRows = history.slice(0, this.state.stepNumber + 1);
         let columns = [];
         for (let j = 0; j < historyRows.length; j++) {
             
