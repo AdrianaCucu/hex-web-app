@@ -1,53 +1,8 @@
 import React from 'react';
 import { Box, Button } from 'grommet';
-import styled from 'styled-components';
 
+import Hexagon from '../components/Hexagon';
 import { hexagons } from '../helpers/themes';
-
-const getSizeAttribute = (props, multiplier) =>
-  props.size ? props.size * multiplier + 'px' : '99px';
-
-const Hex = styled.div`
-  position: relative;
-  width: ${props => getSizeAttribute(props, 1)};
-  height: ${props => getSizeAttribute(props, 0.5775)};
-  background-color: ${props => props.color};
-  margin: ${props => getSizeAttribute(props, 0.28875)} 0;
-  border-left: solid 1px
-    ${props => (props.borderColor ? props.borderColor : '#FFFFFF')};
-  border-right: solid 1px
-    ${props => (props.borderColor ? props.borderColor : '#FFFFFF')};
-
-  &:before,
-  &:after {
-    content: '';
-    position: absolute;
-    z-index: 1;
-    width: ${props => getSizeAttribute(props, 0.7071875)};
-    height: ${props => getSizeAttribute(props, 0.7071875)};
-    -webkit-transform: scaleY(0.5774) rotate(-45deg);
-    -ms-transform: scaleY(0.5774) rotate(-45deg);
-    transform: scaleY(0.5774) rotate(-45deg);
-    background-color: inherit;
-    left: ${props => getSizeAttribute(props, 0.1151968751875)};
-  }
-
-  &:before {
-    top: ${props => getSizeAttribute(props, -0.353553125)};
-    border-top: solid 1.4142px
-      ${props => (props.borderColor ? props.borderColor : '#FFFFFF')};
-    border-right: solid 1.4142px
-      ${props => (props.borderColor ? props.borderColor : '#FFFFFF')};
-  }
-
-  &:after {
-    bottom: ${props => getSizeAttribute(props, -0.353553125)};
-    border-bottom: solid 1.4142px
-      ${props => (props.borderColor ? props.borderColor : '#FFFFFF')};
-    border-left: solid 1.4142px
-      ${props => (props.borderColor ? props.borderColor : '#FFFFFF')};
-  }
-`;
 
 // function Hex(props) {
 //   return <div class="hexagon" onClick={props.onClick} />;
@@ -67,21 +22,28 @@ function Tiles(props) {
         row: i,
         column: j,
         label: '*',
-        size: 96,
+        size: 32,
         color: randomColor,
+        key: `tile-${i},${j}`,
       };
+
       row.push(
-        <Hex
+        <Hexagon
           color={hex.color}
           size={hex.size}
           row={hex.row}
           column={hex.column}
           label={hex.label}
-          onClick={() => this.props.onClick(i, j)}
+          key={hex.key}
+          onClick={() => props.onClick(i, j)}
         />
       );
     }
-    board.push(<Box direction="row">{row}</Box>);
+    board.push(
+      <Box direction="row" key={`row-${i}`}>
+        {row}
+      </Box>
+    );
   }
 
   return (
@@ -93,6 +55,11 @@ function Tiles(props) {
 
 export default class Board extends React.Component {
   render() {
-    return <Tiles size={2} onClick={() => console.log('Clicked meh :)')} />;
+    return (
+      <Tiles
+        size={11}
+        onClick={(i, j) => console.log(`Clicked meh at ${i}, ${j} :)`)}
+      />
+    );
   }
 }
