@@ -5,6 +5,32 @@ import { Link } from 'react-router-dom';
 import Board from './Board';
 
 export default class Game extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+
+            history: [{
+                hexes: Array(11).fill(Array(11).fill(null)),
+            }],
+
+            stepNumber: 0,
+
+            xIsNext: true,
+        };
+    }
+
+    handleClick(i, j) {
+
+        const historyRows = this.state.history.slice(0, this.state.stepNumber + 1);
+        let columns = [];
+        for (let j = 0; j < historyRows.length; j++) {
+            
+        }
+        const current = history[history.length - 1];
+        const rows = current.hexes.slice();
+    }
+
     render() {
         return (
             <Box
