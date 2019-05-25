@@ -76,26 +76,24 @@ class App extends Component {
     const theme = themes[selectedTheme];
 
     return (
-      <Fragment>
-        <Grommet theme={theme} full>
-          <Router>
-            <Box
-              flex
-              fill
-              direction="column"
-              overflow={{ horizontal: 'hidden' }}
-              border={{ color: 'brand', size: 'xlarge' }}
-            >
-              <ToggleThemeButton
-                toggleTheme={this.toggleTheme.bind(this)}
-                selectedTheme={selectedTheme}
-              />
-              <Body />
-              <Footer />
-            </Box>
-          </Router>
-        </Grommet>
-      </Fragment>
+      <Grommet theme={theme} full>
+        <Router>
+          <Box
+            flex
+            fill
+            direction="column"
+            overflow={{ horizontal: 'hidden' }}
+            border={{ color: 'brand', size: 'xlarge' }}
+          >
+            <ToggleThemeButton
+              toggleTheme={this.toggleTheme.bind(this)}
+              selectedTheme={selectedTheme}
+            />
+            <Body />
+            <Footer />
+          </Box>
+        </Router>
+      </Grommet>
     );
   }
 }
