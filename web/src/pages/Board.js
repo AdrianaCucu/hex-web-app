@@ -4,10 +4,6 @@ import { Box, Button } from 'grommet';
 import Hexagon from '../components/Hexagon';
 import { hexagons } from '../helpers/themes';
 
-// function Hex(props) {
-//   return <div class="hexagon" onClick={props.onClick} />;
-// }
-
 function Tiles(props) {
   let board = [];
 
