@@ -2,132 +2,121 @@ import React from 'react';
 import { Box, Button, Heading } from 'grommet';
 import { Link } from 'react-router-dom';
 
+import { clone } from '../helpers/arrays';
 import Board from '../components/Board';
 
 export default class Game extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      history: [
+        {
+          hexes: Array(121).fill(null),
+        },
+      ],
 
-    constructor(props) {
-        super(props);
-        this.state = {
+      stepNumber: 0,
 
-            history: [{
-                hexes: Array(121).fill(null),
-            }],
+      redIsNext: true,
+    };
+  }
 
-            stepNumber: 0,
-
-            rIsNext: true,
-        };
-    }
-
-    handleClick(i) {
-
-        /**
-         * History is not rendered yet !!!!!
-         */
-        const history = this.state.history.slice(0, this.state.stepNumber + 1);
-        const current = history[history.length - 1];
-        const hexes = current.hexes.slice();
-
-        hexes[i] = this.state.rIsNext ? 'R' : 'B';
-
-        this.setState({
-            history: history.concat([{
-                hexes: hexes,
-            }]),
-
-            /**
-             * Updates the step number both for normal moves and when going back to a previous state.
-             */
-            stepNumber: history.length,
-
-            /**
-             * At each turn, the player is changed ('R' or 'B').
-             */
-            rIsNext: !this.state.rIsNext,
-        });
-    }
-
+  handleClick(i) {
     /**
-     * Going back to previous game states.
-     * 
-     * @param {*} step - the number of the previous game state
+     * History is not rendered yet !!!!!
      */
-    jumpTo(step) {
-        if (step === 0)
-            this.setState({
-                history: [{
-                    hexes: Array(121).fill(null)
-                }]
-            });
 
-        this.setState({
-            stepNumber: step,
-            rIsNext: (step % 2) === 0
-        });
-    }
+    const history = clone(this.state.history);
+    const current = history[history.length - 1];
+    const hexes = clone(current.hexes);
 
-    render() {
+    hexes[i] = this.state.redIsNext ? 'R' : 'B';
 
-        const history = this.state.history;
-        const current = history[this.state.stepNumber];
+    this.setState({
+      // Why is this contact([object]) rather than push(object)?
+      history: history.concat([
+        {
+          hexes: hexes,
+        },
+      ]),
 
-        const gameStates = history.map((step, move) => {
+      /**
+       * Updates the step number both for normal moves and when going back to a previous state.
+       */
+      stepNumber: history.length,
 
-            // Previous moves.
-            const desc = move ?
-                '#' + move :
-                'Restart';
+      /**
+       * At each turn, the player is changed ('R' or 'B').
+       */
+      redIsNext: !this.state.redIsNext,
+    });
+  }
 
-            return (
-                <Button onClick={() => this.jumpTo(move)}>{desc}</Button>
-            );
-        });
+  /**
+   * Going back to previous game states.
+   *
+   * @param {*} step - the number of the previous game state
+   */
+  jumpTo(step) {
+    if (step === 0)
+      this.setState({
+        history: [
+          {
+            hexes: Array(121).fill(null),
+          },
+        ],
+      });
 
-        return (
-            <Box
-                flex
-                fill
-                border
-                gap="medium"
-                direction="row"
-                align="center"
-                justify="start"
-            >
+    this.setState({
+      stepNumber: step,
+      redIsNext: step % 2 === 0,
+    });
+  }
 
-                <Box border width="medium" height="full" justify="center">
-                    <Heading margin="small">
-                        Hex
-                    </Heading>
+  render() {
+    // const history = this.state.history;
+    const { history } = this.state;
+    const current = history[this.state.stepNumber];
 
-                    <Link to="/game">
-                        <Button label="New Game" margin="small" />
-                    </Link>
+    const gameStates = history.map((step, move) => {
+      // Previous moves.
+      const desc = move ? '#' + move : 'Restart';
 
-                    <Link to="/">
-                        <Button label="Back" margin="small" />
-                    </Link>
-                </Box>
+      return <Button onClick={() => this.jumpTo(move)}>{desc}</Button>;
+    });
 
-                <Box id="game" border width="xlarge" height="full">
-                    Game
-                    <Board 
-                        hexes={current.hexes}
-                        onClick={(i) => this.handleClick(i)}
-                    />
-                </Box>
+    return (
+      <Box
+        flex
+        fill
+        border
+        gap="medium"
+        direction="row"
+        align="center"
+        justify="start"
+      >
+        <Box border width="medium" height="full" justify="center">
+          <Heading margin="small">Hex</Heading>
 
-                <Box 
-                    border 
-                    width="medium" 
-                    height="full" 
-                    align="center"
-                    size="small"
-                >
-                    Previous game states:
-                    {gameStates}
-                </Box>
-            </Box>
-        );
-    }
+          <Link to="/game">
+            <Button label="New Game" margin="small" />
+          </Link>
+
+          <Link to="/">
+            <Button label="Back" margin="small" />
+          </Link>
+        </Box>
+
+        <Box id="game" border width="xlarge" height="full">
+          Game
+          <Board hexes={current.hexes} onClick={i => this.handleClick(i)} />
+        </Box>
+
+        <Box border width="medium" height="full" align="center" size="small">
+          Previous game states:
+          {gameStates}
+        </Box>
+      </Box>
+    );
+  }
 }
