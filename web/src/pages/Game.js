@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Button, Heading } from 'grommet';
 import { Link } from 'react-router-dom';
 
-import Board from './Board';
+import Board from '../components/Board';
 
 export default class Game extends React.Component {
 
