@@ -79,4 +79,10 @@ console.log('customDark: ', customDark);
 const dark = deepMerge(defaultDark, customDark);
 const light = deepMerge(defaultLight, customLight);
 
-export { dark, light };
+const hexagons = {
+  playerOne: '#D52941', // rusty red
+  playerTwo: '#343633', // jet black
+  empty: '#EDF0DA' // eggshell
+};
+
+export { dark, light, hexagons };
