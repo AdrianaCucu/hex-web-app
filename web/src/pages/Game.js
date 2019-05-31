@@ -20,23 +20,12 @@ export default class Game extends React.Component {
         };
     }
 
-<<<<<<< HEAD
     handleClick(i) {
 
         /**
          * History is not rendered yet !!!!!
          */
         const history = this.state.history.slice(0, this.state.stepNumber + 1);
-=======
-    handleClick(i, j) {
-        const { history } = this.state;
-        
-        const historyRows = history.slice(0, this.state.stepNumber + 1);
-        let columns = [];
-        for (let j = 0; j < historyRows.length; j++) {
-            
-        }
->>>>>>> 930fdda9211a55752507b64964c3a6aa99ba8121
         const current = history[history.length - 1];
         const hexes = current.hexes.slice();
 
