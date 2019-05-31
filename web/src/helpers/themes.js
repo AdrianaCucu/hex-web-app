@@ -82,7 +82,7 @@ const light = deepMerge(defaultLight, customLight);
 const hexagons = {
   playerOne: '#D52941', // rusty red
   playerTwo: '#343633', // jet black
-  empty: '#EDF0DA' // eggshell
+  empty: '#FFFFFF' // eggshell
 };
 
 export { dark, light, hexagons };
