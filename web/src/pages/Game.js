@@ -30,6 +30,12 @@ export default class Game extends React.Component {
     const current = history[history.length - 1];
     const hexes = clone(current.hexes);
 
+    const moveIsValid = hexes[i] === null;
+    if (!moveIsValid) {
+      console.warn('Move not valid :(');
+      return;
+    }
+
     hexes[i] = this.state.redIsNext ? 'R' : 'B';
 
     this.setState({
