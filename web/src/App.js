@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Box, Grommet, Button, Anchor, Text } from 'grommet';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Helmet } from 'react-helmet'; // Helmet lets us dynamically update the page's <head>, like our favicon :D
 
 import { dark, light } from './helpers/themes';
 import Home from './pages/Home';
@@ -21,15 +22,23 @@ const themes = {
 };
 
 const ToggleThemeButton = ({ toggleTheme, selectedTheme }) => (
-  <Box>
-    <Button onClick={toggleTheme.bind(this)} margin="medium">
-      {selectedTheme === 'light' ? <Moon /> : <Sun />}
-    </Button>
-  </Box>
+  <Fragment>
+    <Helmet>
+      <link
+        rel="shortcut icon"
+        href={selectedTheme === 'light' ? 'light-favicon.ico' : 'favicon-ico'}
+      />
+    </Helmet>
+    <Box>
+      <Button onClick={toggleTheme.bind(this)} margin="medium">
+        {selectedTheme === 'light' ? <Moon /> : <Sun />}
+      </Button>
+    </Box>
+  </Fragment>
 );
 
 const Body = props => (
-  <Box flex justify="center" align="left" margin="medium">
+  <Box flex justify="center" align="start" margin="medium">
     {/* This is the app's main body, where the Home and Game components are injected */}
     <Route path="/" exact component={Home} />
     <Route path="/game" component={Game} />
@@ -38,7 +47,7 @@ const Body = props => (
 );
 
 const Footer = props => (
-  <Box justify="end" align="center" margin="small">
+  <Box justify="end" align="center">
     <Text size="small">
       Made with ❤ by A.C. and DMeechan⠀·⠀
       <Anchor
@@ -72,7 +81,6 @@ class App extends Component {
           <Box
             flex
             fill
-            pad="small"
             direction="column"
             overflow={{ horizontal: 'hidden' }}
             border={{ color: 'brand', size: 'xlarge' }}
