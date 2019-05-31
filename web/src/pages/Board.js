@@ -3,30 +3,45 @@ import { Box, Button } from 'grommet';
 
 function Hex(props) {
     return (
-        <Button row={props.row} column={props.column} label={props.label} onClick={props.onClick} />
+        <Button className="hex" onClick={props.onClick}>
+            {props.value}
+        </Button>
     );
 }
 
-function Tiles(props) {
+export default class Board extends React.Component {
 
-    let board = [];
-
-    for (let i = 0; i < props.size; i++) {
-        let row = [];
-        for (let j = 0; j < props.size; j++) {
-            const hex = { row: i, column: j, label: "*" }
-            row.push(<Hex row={hex.row} column={hex.column} label={hex.label} onClick={() => this.props.onClick(i, j)} />);
-        }
-        board.push(<Box direction="row">{row}</Box>);
+    renderHex(i) {
+        return (
+            <Hex
+                value={this.props.hexes[i]}
+                onClick={() => this.props.onClick(i)}
+            />
+        );
     }
 
-    return <Box fill align="center" justify="center" size="small">{board}</Box>;
-}
+    getRow(i) {
+        let row = [];
+        for (let j = 0; j < 11; j++) {
+            row.push(this.renderHex(11 * i + j))
+        }
+        return row;
+    }
 
-export default class Board extends React.Component {
+    getHexes() {
+        let board = [];
+        for (let i = 0; i < 11; i++) {
+            const row = this.getRow(i);
+            board.push(<div className="board-row">{row}</div>)
+        }
+        return board;
+    }
+
     render() {
         return (
-            <Tiles size={11} />
+            <div>
+                {this.getHexes()}
+            </div>
         );
-    };
+    }
 }
